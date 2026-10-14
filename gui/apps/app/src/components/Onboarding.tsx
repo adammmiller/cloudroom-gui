@@ -86,7 +86,7 @@ export function Onboarding() {
   const [open, setOpen] = useAtom(openAtom);
   const projects = useSidebarNavigation().data?.projects;
   const account = useCloudroomAccount();
-  const locked = account.isSuccess && !account.data.account;
+  const locked = account.isSuccess && !account.data.account && !account.data.selfHosted;
   const visible = locked || open || (!dismissed && projects !== undefined && projects.length === 0);
   if (!visible) return null;
   return <Setup locked={locked} close={() => { setDismissed(true); setOpen(false); }} />;
